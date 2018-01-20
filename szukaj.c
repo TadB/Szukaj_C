@@ -1,5 +1,5 @@
 #include "szukaj.h"
-#include "exponent.h"
+#include "power.h"
 
 int find(char *sentence, char *search){
     char *it;
@@ -8,12 +8,12 @@ int find(char *sentence, char *search){
 
     it = sentence;
     len = length(search);
-    origin = hash(search, len, hBufor); //obliczenie fingerprinta szukanego ciagu znakow
+    origin = hash(search, len, &hBufor); //obliczenie fingerprinta szukanego ciagu znakow
     hBufor=0;
-    for(i=0;(*(it+len))!='\n';it++, i++){
-        fingerprint = hash(it, len, hBufor);
+    for(i=0;(*(it+len))!='\0';it++, i++){
+        fingerprint = hash(it, len, &hBufor);
         if(fingerprint == origin){
-            if(check(it, search))
+            if(check(it, search)==0)
                 return(i);
         }
     }
@@ -42,13 +42,13 @@ int hash(char *sequence, int howMany, long int* bMod){
     //pierwsze uruchomienie funkcji hashujacej, oblicza caly hash
     if((*bMod)==0){
         for(; howMany>0; howMany--){
-            sum+=int(*input)*exp(shift, howMany);
+            sum+=(int)(*input)*power(shift, howMany);
         }
     }
     //kolejne uruchomienie funkcji hashujacej dla nowego ciagu (rozniacego sie tylko jednym znakiem od poprzedniego) - oblczanie na podtawie starej zmiennej
     //Oszczednosc mocy obliczeniowej i czasu. Mniejsza zlozonosc, brak koniecznosci przeliczania kolejny raz tych samych liczb
     else{
-        sum = (*bMod-oldHOD*exp(shift, howMany))*shift + newLOD;
+        sum = (*bMod-oldHOD*power(shift, howMany))*shift + newLOD;
     }
     *bMod = sum;
     result = sum%modulo;
@@ -60,19 +60,19 @@ int length(char *input){
     int counter;
 
     it = input;
-    for(it=input; (*it)!='\n'; it++){
+    for(it=input; (*it)!='\0'; it++){
         counter++;
     }
     return(counter);
 
 }
 
-bool check(char *suspect, char *word){
+int check(char *suspect, char *word){
     char *toFind = word;
     char *it = suspect;
-    for(; (*toFind)!='\n'; toFind++, it++){
+    for(; (*toFind)!='\0'; toFind++, it++){
         if((*toFind)!=(*it))
-            return false;
+            return -1;
     }
-    return true;
+    return 0;
 }

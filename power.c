@@ -1,9 +1,9 @@
-#include "exponent.h"
+#include "power.h"
 
-long int exp(int base, int exp){
+long int power(int base, int power){
     int i;
     long int store=base;
-    for(i=0; i<exp; i++){
+    for(i=0; i<power; i++){
         store*=store;
     }
     return store;
