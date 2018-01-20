@@ -17,6 +17,7 @@ int find(char *sentence, char *search){
                 return(i);
         }
     }
+    return(-1); //nic nie znaleziono
 
 
 }
