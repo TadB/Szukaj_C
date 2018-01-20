@@ -5,19 +5,19 @@
 
 int main(){
     char phrase[N1], toSearch[N2];
+    int index=0;
+    char *tmp;
     fgets(phrase, N1, stdin);
     fgets(toSearch, N2, stdin);
-    int index[N1], i=0, temp=0;
-
-    while(1){
-        temp=find(phrase, toSearch);
-        if(temp==-1)
-            break;
-        index[i++]=temp;
-    }
+    tmp=phrase;
     puts("trafienia na indeksach: ");
-    for(; i>0; i--){
-        printf(" | %d| ", index[i]);
-    }
+    // while(1){
+        index=find(tmp, toSearch);
+        // if(index==-1)
+            // break;
+        printf(" | %d| ", index);
+        // getchar();
+        // tmp+=index+1;
+    // }
     return 0;
 }

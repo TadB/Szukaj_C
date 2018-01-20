@@ -1,9 +1,11 @@
 #include "power.h"
 
-long int power(int base, int power){
+unsigned long long int power(int base, int power){
     int i;
-    long int store=base;
-    for(i=0; i<power; i++){
+    unsigned long long int store=base;
+    if(power == 0)
+        return 1;
+    for(i=1; i<power; i++){
         store*=store;
     }
     return store;

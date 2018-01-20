@@ -2,5 +2,5 @@
 #ifndef POWER_H
 #define POWER_H
 
-    long int power(int, int);
+    unsigned long long int power(int, int);
 #endif
