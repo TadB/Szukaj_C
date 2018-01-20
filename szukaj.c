@@ -32,7 +32,8 @@ int hash(char *sequence, int howMany, unsigned long long int* bMod){
     char newLOD; //new low-order digit
     int modulo=17;
     int shift = 3;
-    unsigned long long int sum=0;
+    // int temp=0;
+    unsigned long long int sum=0, temp=0;
     int result=0;
 //}}}
     input = sequence;
@@ -41,7 +42,8 @@ int hash(char *sequence, int howMany, unsigned long long int* bMod){
     //pierwsze uruchomienie funkcji hashujacej, oblicza caly hash
     if((*bMod)==0){
         for(; howMany>=0; howMany--){
-            sum+=(int)(*input)*power(shift, howMany);
+            temp=power(shift, howMany);
+            sum+=(*input)*temp;
             input++;
         }
     }

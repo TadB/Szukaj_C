@@ -6,7 +6,7 @@ unsigned long long int power(int base, int power){
     if(power == 0)
         return 1;
     for(i=1; i<power; i++){
-        store*=store;
+        store*=base;
     }
     return store;
 }
