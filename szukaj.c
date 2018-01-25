@@ -22,17 +22,13 @@ int find(char *sentence, char *search){
 
 }
 
-//&bMod - adres zmiennej w ktorej przechowuje prawie obliczony hash //przed operacja modulo
-//*sequence - adres poczatku (pierwszy wyraz) sprawdzanego fragmentu ciagu
 int hash(char *sequence, int howMany, unsigned long long int* bMod){
 //{{{zmienne
     char *input;
-    //int i=howMany;
     char oldHOD; //old high-order digit
     char newLOD; //new low-order digit
     int modulo=17;
     int shift = 3;
-    // int temp=0;
     unsigned long long int sum=0, temp=0;
     int result=0;
 //}}}
